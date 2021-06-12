@@ -27,10 +27,10 @@ In this project you will create a login page and request a token from the server
 
 ### Task 2: CodeGrade Setup
 
-* [ ] Open the assignment in Canvas and click on the "Set up git" option.
-* [ ] Follow instructions to set up Codegrade's Webhook and Deploy Key, making sure your deployment is set to your `<firstName-lastName>`.
-* [ ] Push your first commit: `git commit --allow-empty -m "first commit" && git push`
-* [ ] Check to see that Codegrade has accepted your git submission.
+* [X] Open the assignment in Canvas and click on the "Set up git" option.
+* [X] Follow instructions to set up Codegrade's Webhook and Deploy Key, making sure your deployment is set to your `<firstName-lastName>`.
+* [X] Push your first commit: `git commit --allow-empty -m "first commit" && git push`
+* [X] Check to see that Codegrade has accepted your git submission.
 
 ### Task 3: Project Requirements
 
@@ -39,19 +39,19 @@ Your finished project must include all of the following requirements. **Unlike o
 #### Authentication
 > *Build a login form to authenticate your users along with all the components and utilities needed to support authentication.*
 
-* [ ] In `Login.js`, build all UI and state functionality needed to capture a username and password.
-* [ ] **Make sure that the input for your username and password includes the data-testid="username" and data-testid="password" attributes. These are needed for codegrade testing and codegrade autotests will fail without them.**
-* [ ] Build in functionality that would allow an error to be displayed in the provided p tag if either the username or password is incorrect.
-* [ ] Construct an http request that retrieves an auth token from the server when the username `Lambda` and the password `School` is passed into the request.
-* [ ] Save the token to localStorage.
-* [ ] Build a `axiosWithAuth` module within the helpers folder to create an instance of axios with the authentication header.
-* [ ] Build a `PrivateRoute` component within the components folder and use it to protect the route that renders the `BubblesPage` component.
-* [ ] In `App.js`, build the backend to the logout button. When pressed, send an http request to the logout endpoint and remove the authentication token from localStorage.
+* [X] In `Login.js`, build all UI and state functionality needed to capture a username and password.
+* [X] **Make sure that the input for your username and password includes the data-testid="username" and data-testid="password" attributes. These are needed for codegrade testing and codegrade autotests will fail without them.**
+* [X] Build in functionality that would allow an error to be displayed in the provided p tag if either the username or password is incorrect.
+* [X] Construct an http request that retrieves an auth token from the server when the username `Lambda` and the password `School` is passed into the request.
+* [X] Save the token to localStorage.
+* [X] Build a `axiosWithAuth` module within the helpers folder to create an instance of axios with the authentication header.
+* [X] Build a `PrivateRoute` component within the components folder and use it to protect the route that renders the `BubblesPage` component.
+* [X] In `App.js`, build the backend to the logout button. When pressed, send an http request to the logout endpoint and remove the authentication token from localStorage.
 
 #### Consuming the API
 > *Add in the http requests and state changes needed to connect our api to the web application. Consider the effect of authentication on your api requests.*
 
-* [ ] In `services/fetchColorServices.js`, build out fetchColorService function to make a GET request to fetch the color data for your bubbles.
+* [X] In `services/fetchColorServices.js`, build out fetchColorService function to make a GET request to fetch the color data for your bubbles.
 * [ ] When `BubblePages` mounts, call fetchColorServices and save it's result in state.
 * [ ] In `BubblePage.js`, complete `saveEdit`, and `deleteColor` functions to make API requests for to editing and delete data.
 * [ ] Watch and enjoy as your app responds to updates in the data. Check out `Bubbles.js` to see how this is built.
@@ -74,7 +74,7 @@ When completing these goals, make sure to use a **new branch** to ensure your MV
 
 These goals may or may not be things you have learned in this module but they build on the material you just studied:
 
-* [ ] Build out another form to add a new color to your color list
+* [] Build out another form to add a new color to your color list
 * [ ] Build a custom hook called `useApi` that you can use to make all of your API calls
 * [ ] Add more tests to give you further confidence in the code you're shipping
 
