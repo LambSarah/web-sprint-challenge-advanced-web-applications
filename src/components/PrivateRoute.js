@@ -4,16 +4,20 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import Login from './Login'
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-	return (<Route {...rest} render={
-		(props) => {
+const PrivateRoute = props => {
+	const { component: Component, ...rest } = props;
+	return (<Route
+		{...rest}
+		render={(props) => {
 			if (localStorage.getItem('token')) {
+				console.log('PrivateRoute says =======REDIRECTING TO COMPONENT=======')
 				return <Component {...props} />
 			} else {
-				return (<><h2>Uh oh!</h2> <Redirect to={Login} /> </>)
+				console.log('PrivateRoute says =======UH OH=======')
+				return (<Redirect to={Login} />)
 			}
 		}
-	} />)
+		} />)
 }
 export default PrivateRoute
 

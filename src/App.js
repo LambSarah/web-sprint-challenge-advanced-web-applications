@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 
 import Login from "./components/Login";
 import { axiosWithAuth } from './helpers/axiosWithAuth'
@@ -8,7 +9,9 @@ import BubblePage from './components/BubblePage'
 
 import "./styles.scss";
 
-function App() {
+function App(props) {
+  const LoadingIndicator = props.loadingIndicator;
+
   const logout = () => {
     axiosWithAuth().post('/logout')
       .then(res => {
@@ -21,16 +24,17 @@ function App() {
       )
   }
 
+
   return (
     <Router>
       <div className="App">
         <header>
           Color Picker Sprint Challenge
-          <a data-testid="logoutButton" href="#" onClick={logout}>logout</a>
+          <button data-testid="logoutButton" onClick={logout}>logout</button>
         </header>
 
         <PrivateRoute exact path='/protected' component={BubblePage} />
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" LoadingIndicator={LoadingIndicator} component={Login} />
       </div>
     </Router>
   );

@@ -1,7 +1,8 @@
-import Axios from "axios";
-import React, { useEffect, useState } from "react";
-import { push } from 'react-router-dom'
+import axios from "axios";
+import React, { useState } from "react";
+import { useHistory } from 'react-router-dom'
 
+//import { axiosWithAuth } from '../helpers/axiosWithAuth'
 const initialValues = {
   username: '',
   password: ''
@@ -15,23 +16,29 @@ const Login = props => {
   const [error, setError] = useState('')
   //replace with error state
 
+  const { push } = useHistory();
   const [isLoading, setIsLoading] = useState(false)
+
+  const LoadingIndicator = props.LoadingIndicator
 
   const attemptLogin = evt => {
     evt.preventDefault()
-    if (credentials.username === '' || credentials.password === '') {
+    if (credentials.username !== 'Lambda' || credentials.password !== 'School') {
       setError('Username or Password not valid.')
-    } else if (credentials.username === 'Lambda'
-      && credentials.password === 'i<3Lambd4') {
+      console.log('Login says ============error set===========')
+    } else {
       setIsLoading(true)
-      Axios.post('http://localhost:5000/api/login', credentials)
+      console.log('=======ATTEMPTING LOGIN=======')
+      axios.post('http://localhost:5000/api/login', credentials)
         .then(res => {
+          console.log('Login says =======RECEIVING CREDENTIALS=======')
           localStorage.setItem('token', res.data.payload)
           setIsLoading(false)
-
-          props.history.push('/protected')
+          console.log('=======LOGIN SUCCESSFUL======')
+          push('/protected')
         })
         .catch(err => {
+          console.log('############LOGIN FAILED###########')
           console.log(err)
           setIsLoading(false)
         })
@@ -39,10 +46,16 @@ const Login = props => {
   }
 
   const handleChange = evt => {
+    setError('')
     setCredentials({
       ...credentials,
       [evt.target.name]: evt.target.value
     })
+  }
+
+  const buttonClicked = evt => {
+    console.log(evt, '----------buttonClicked!------------')
+    attemptLogin(evt);
   }
   return (
     <div>
@@ -54,17 +67,23 @@ const Login = props => {
             name='username'
             onChange={handleChange}
             value={credentials.username}
+            placeholder='username'
             data-testid="username"
+            auto-complete='username'
           />
           <input type='password'
             name='password'
             onChange={handleChange}
             value={credentials.password}
+            placeholder='password'
             data-testid="password"
+            auto-complete='current-password'
           />
+          <input type='button'
+            value='Submit' onClick={buttonClicked} />
         </form>
       </div>
-
+      {isLoading ? LoadingIndicator : ''}
       <p data-testid="errorMessage" className="error">{error}</p>
     </div>
   );

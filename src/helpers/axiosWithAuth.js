@@ -4,11 +4,11 @@ import axios from "axios";
 //Build and export a function used to send in our authorization token
 export const axiosWithAuth = () => {
 	const token = localStorage.getItem('token')
-
+	console.log('axiosWithAuth says ======TOKEN RETRIEVED FROM LOCALSTORAGE=======', token)
 	return axios.create({
 		headers: {
 			authorization: token,
-		},
-		baseUrl: 'http://localhost:5000/api'
+			applicationType: 'application/json'
+		}
 	})
 }

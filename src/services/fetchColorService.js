@@ -3,23 +3,24 @@ import { axiosWithAuth } from '../helpers/axiosWithAuth'
 
 class fetchColorService extends React.Component {
 	state = {
-		colorData: [],
+		colors: [],
 		colorsLoading: false
 	}
 
-	componentDidMount() {
-		this.setState({
-			colorsLoading: true
-		})
+	async componentDidMount() {
+		console.log('fetchColorService says =======LOADING COLORS======')
+		//this.setState({
+		//colorsLoading: true
+		//})
 		this.getData();
 	}
 
 	getData = () => {
-		axiosWithAuth().get('/colors')
+		axiosWithAuth().get('http://localhost:5000/api/colors')
 			.then(res => {
-				console.log(res)
+				console.log('fetchColorService says ========COLORS RETREIVED======', res)
 				this.setState({
-					colorsData: res.data,
+					colors: res.data,
 					colorsLoading: false
 				})
 			})
