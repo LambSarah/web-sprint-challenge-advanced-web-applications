@@ -30,20 +30,31 @@ const BubblePage = props => {
   };
 
   const saveEdit = (editColor) => {
+    let id = editColor.id;
     axiosWithAuth()
       .put(`http://localhost:5000/api/colors/${editColor}`, editColor)
       .then(res => {
         console.log(res)
-        let oldId = editColor.id;
         setColors(...colors,
-          (colors.oldId), res.data)
-        //setColors(res.data)
-        //push('/protected')
+          id, res.data)
+
       })
       .catch(err => console.log(err))
   };
 
   const deleteColor = (colorToDelete) => {
+    let id = colorToDelete.id
+    axiosWithAuth().delete(`http://localhost/5000/api/colors/${id}`)
+      .then(res => {
+        console.log(res)
+        axiosWithAuth().get('http://localhost:5000/api/colors')
+          .then(resp => {
+            setColors(resp.data)
+            push('/protected')
+          })
+          .catch(err => console.log(err, 'error in get call'))
+      })
+      .catch(err => console.log(err, 'error in delete call'))
   };
 
   return (

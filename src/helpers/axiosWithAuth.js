@@ -8,7 +8,9 @@ export const axiosWithAuth = () => {
 	return axios.create({
 		headers: {
 			authorization: token,
-			applicationType: 'application/json'
+			applicationType: 'application/json',
+			'Access-Control-Allow-Origin': '*',
+			Vary: 'Origin'
 		}
 	})
 }
